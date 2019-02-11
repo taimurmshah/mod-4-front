@@ -9,10 +9,16 @@ class BestFriends extends React.Component {
           key={friendObj.id}
           friend={friendObj}
           clickHandler={this.props.clickHandler}
+          button={"ghost?"}
         />
       );
     });
-    return <div>{friends}</div>;
+    return (
+      <div className="right-container">
+        <h1>Best Friends</h1>
+        {friends}
+      </div>
+    );
   }
 }
 

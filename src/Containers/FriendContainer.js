@@ -21,17 +21,21 @@ class FriendContainer extends React.Component {
       });
   }
 
-  clickHandler = friendObj => {
+  addHandler = friendObj => {
+    if (!this.state.bestFriends.includes(friendObj)) {
+      this.setState({
+        bestFriends: [friendObj, ...this.state.bestFriends]
+      });
+    }
+  };
+
+  removeHandler = friendObj => {
     if (this.state.bestFriends.includes(friendObj)) {
       let index = this.state.bestFriends.indexOf(friendObj);
       let removeArray = [...this.state.bestFriends];
       removeArray.splice(index, 1);
       this.setState({
         bestFriends: removeArray
-      });
-    } else {
-      this.setState({
-        bestFriends: [friendObj, ...this.state.bestFriends]
       });
     }
   };
@@ -48,20 +52,22 @@ class FriendContainer extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="be-the-one">
         <Form changeHandler={this.changeHandler} />
         {this.state.filtered.length > 0 ? (
           <AllFriends
+            className="left-container"
             friends={this.state.filtered}
-            clickHandler={this.clickHandler}
+            clickHandler={this.addHandler}
           />
         ) : (
           <h1>Loading</h1>
         )}
         {this.state.bestFriends.length > 0 ? (
           <BestFriends
+            className="right-container"
             friends={this.state.bestFriends}
-            clickHandler={this.clickHandler}
+            clickHandler={this.removeHandler}
           />
         ) : null}
       </div>

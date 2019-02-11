@@ -9,11 +9,17 @@ class AllFriends extends React.Component {
           key={friendObj.id}
           friend={friendObj}
           clickHandler={this.props.clickHandler}
+          button={"fux wit??"}
         />
       );
     });
 
-    return <div>{friends}</div>;
+    return (
+      <div className="left-container">
+        <h1>Friends</h1>
+        {friends}
+      </div>
+    );
   }
 }
 

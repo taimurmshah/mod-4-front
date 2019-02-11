@@ -22,8 +22,12 @@ const FriendCard = props => {
   return (
     <div>
       <h1>{props.friend.name}</h1>
-      <img alt="" src={require(`../friend-imgs/${friendImageName()}.png`)} />
-      <button onClick={clickHandler}>Best Friend?</button>
+      <img
+        className="img"
+        alt=""
+        src={require(`../friend-imgs/${friendImageName()}.png`)}
+      />
+      <button onClick={clickHandler}>{props.button}</button>
     </div>
   );
 };
