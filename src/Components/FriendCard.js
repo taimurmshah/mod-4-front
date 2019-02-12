@@ -1,8 +1,6 @@
 import React from "react";
 
 const FriendCard = props => {
-  const { friend } = props;
-
   const friendImageName = () => {
     let friendName = props.friend.name;
     if (friendName.includes(" ")) {
@@ -25,7 +23,11 @@ const FriendCard = props => {
       <img
         className="img"
         alt=""
-        src={require(`../friend-imgs/${friendImageName()}.png`)}
+        src={
+          props.img
+            ? props.img
+            : require(`../friend-imgs/${friendImageName()}.png`)
+        }
       />
       <button onClick={clickHandler}>{props.button}</button>
     </div>

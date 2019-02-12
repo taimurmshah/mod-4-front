@@ -1,7 +1,8 @@
 import React from "react";
 import AllFriends from "./AllFriends";
 import BestFriends from "./BestFriends";
-import Form from "../Components/Form";
+import SearchForm from "../Components/SearchForm";
+import CreateForm from "../Components/CreateForm";
 
 class FriendContainer extends React.Component {
   state = {
@@ -50,10 +51,19 @@ class FriendContainer extends React.Component {
     });
   };
 
+  createSubmitHandler = friendObj => {
+    console.log(friendObj);
+    this.setState({
+      friends: [friendObj, ...this.state.friends],
+      filtered: [friendObj, ...this.state.filtered]
+    });
+  };
+
   render() {
     return (
       <div className="be-the-one">
-        <Form changeHandler={this.changeHandler} />
+        <SearchForm changeHandler={this.changeHandler} />
+        <CreateForm submitHandler={this.createSubmitHandler} />
         {this.state.filtered.length > 0 ? (
           <AllFriends
             className="left-container"
