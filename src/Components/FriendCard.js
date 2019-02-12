@@ -1,4 +1,5 @@
 import React from "react";
+import { Card, Button, Image } from "semantic-ui-react";
 
 const FriendCard = props => {
   const friendImageName = () => {
@@ -37,23 +38,31 @@ const FriendCard = props => {
   };
 
   return (
-    <div>
-      <h1>{props.friend.name}</h1>
-      <img
-        className="img"
-        alt=""
+    <Card>
+      <Image
         src={
           props.img
             ? props.img
             : require(`../friend-imgs/${friendImageName()}.png`)
         }
       />
-      {props.phrase ? <button onClick={boo}>{"speak"}</button> : null}
-      {props.deleteHandler ? (
-        <button onClick={deleteHandler}>Banish</button>
-      ) : null}
-      <button onClick={clickHandler}>{props.button}</button>
-    </div>
+      <Card.Content>
+        <Card.Header>{props.friend.name}</Card.Header>
+        {props.phrase ? (
+          <Button size="medium" onClick={boo}>
+            {"speak"}
+          </Button>
+        ) : null}
+        {props.deleteHandler ? (
+          <Button size="medium" onClick={deleteHandler}>
+            Banish
+          </Button>
+        ) : null}
+        <Button size="medium" onClick={clickHandler}>
+          {props.button}
+        </Button>
+      </Card.Content>
+    </Card>
   );
 };
 

@@ -1,5 +1,6 @@
 import React from "react";
 import FriendCard from "../Components/FriendCard";
+import { Grid } from "semantic-ui-react";
 
 class AllFriends extends React.Component {
   render() {
@@ -29,10 +30,12 @@ class AllFriends extends React.Component {
     });
 
     return (
-      <div className="left-container">
-        <h1>Friends</h1>
-        {friends}
-      </div>
+      <Grid>
+        <div className="left-container">
+          <h1>Friends</h1>
+          {friends}
+        </div>
+      </Grid>
     );
   }
 }

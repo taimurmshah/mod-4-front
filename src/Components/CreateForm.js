@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "semantic-ui-react";
 
 class CreateForm extends React.Component {
   state = {
@@ -60,7 +61,7 @@ class CreateForm extends React.Component {
             onChange={this.changeHandler}
           />
 
-          <button>Birth</button>
+          <Button>Birth</Button>
         </form>
       </div>
     );
