@@ -15,6 +15,7 @@ class SearchForm extends React.Component {
   render() {
     return (
       <div>
+        <h3>Search</h3>
         <form onSubmit={e => e.preventDefault()}>
           <input
             type="text"

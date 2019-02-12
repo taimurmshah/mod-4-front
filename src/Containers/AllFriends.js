@@ -10,6 +10,7 @@ class AllFriends extends React.Component {
             key={friendObj.id}
             friend={friendObj}
             clickHandler={this.props.clickHandler}
+            deleteHandler={this.props.deleteHandler}
             button={"fux wit??"}
             img={friendObj.neutral_image}
           />
@@ -20,6 +21,7 @@ class AllFriends extends React.Component {
             key={friendObj.id}
             friend={friendObj}
             clickHandler={this.props.clickHandler}
+            deleteHandler={this.props.deleteHandler}
             button={"fux wit??"}
           />
         );

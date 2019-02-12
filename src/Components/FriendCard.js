@@ -17,6 +17,25 @@ const FriendCard = props => {
     props.clickHandler(props.friend);
   };
 
+  const boo = () => {
+    alert(`${props.friend.name} says: ${props.phrase}`);
+  };
+
+  const deleteHandler = () => {
+    fetch(`http://localhost:3000/api/v1/friends/${props.friend.id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      }
+    })
+      .then(res => res.json())
+      .then(obj => {
+        console.log("I'm in the delete; here is the response obj:", obj);
+        props.deleteHandler(obj);
+      });
+  };
+
   return (
     <div>
       <h1>{props.friend.name}</h1>
@@ -29,6 +48,10 @@ const FriendCard = props => {
             : require(`../friend-imgs/${friendImageName()}.png`)
         }
       />
+      {props.phrase ? <button onClick={boo}>{"speak"}</button> : null}
+      {props.deleteHandler ? (
+        <button onClick={deleteHandler}>Banish</button>
+      ) : null}
       <button onClick={clickHandler}>{props.button}</button>
     </div>
   );

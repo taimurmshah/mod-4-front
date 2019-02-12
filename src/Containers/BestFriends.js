@@ -10,7 +10,8 @@ class BestFriends extends React.Component {
             key={friendObj.id}
             friend={friendObj}
             clickHandler={this.props.clickHandler}
-            button={"fux wit??"}
+            button={"ghost?"}
+            phrase={friendObj.catch_phrase}
             img={friendObj.neutral_image}
           />
         );
@@ -21,6 +22,7 @@ class BestFriends extends React.Component {
             friend={friendObj}
             clickHandler={this.props.clickHandler}
             button={"ghost?"}
+            phrase={friendObj.catch_phrase}
           />
         );
       }

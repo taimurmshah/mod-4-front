@@ -59,6 +59,31 @@ class FriendContainer extends React.Component {
     });
   };
 
+  deleteHandler = friendObj => {
+    let banishedOne = this.state.filtered.find(
+      friend => friend.id === friendObj.id
+    );
+    if (this.state.bestFriends.find(friend => friend.id === friendObj.id)) {
+      let oldFriend = this.state.bestFriends.find(
+        friend => friend.id === friendObj.id
+      );
+      this.setState({
+        filtered: [
+          ...this.state.filtered.filter(friend => friend !== banishedOne)
+        ],
+        bestFriends: [
+          ...this.state.bestFriends.filter(friend => friend !== oldFriend)
+        ]
+      });
+    } else {
+      this.setState({
+        filtered: [
+          ...this.state.filtered.filter(friend => friend !== banishedOne)
+        ]
+      });
+    }
+  };
+
   render() {
     return (
       <div className="be-the-one">
@@ -66,16 +91,15 @@ class FriendContainer extends React.Component {
         <CreateForm submitHandler={this.createSubmitHandler} />
         {this.state.filtered.length > 0 ? (
           <AllFriends
-            className="left-container"
             friends={this.state.filtered}
             clickHandler={this.addHandler}
+            deleteHandler={this.deleteHandler}
           />
         ) : (
           <h1>Loading</h1>
         )}
         {this.state.bestFriends.length > 0 ? (
           <BestFriends
-            className="right-container"
             friends={this.state.bestFriends}
             clickHandler={this.removeHandler}
           />
