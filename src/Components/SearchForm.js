@@ -1,17 +1,6 @@
 import React from "react";
 
 class SearchForm extends React.Component {
-  state = {
-    name: ""
-  };
-
-  changeHandler = e => {
-    let name = { [e.target.name]: e.target.value };
-    this.setState(name);
-    console.log("name:", name);
-    this.props.changeHandler(name);
-  };
-
   render() {
     return (
       <div>
@@ -21,8 +10,8 @@ class SearchForm extends React.Component {
             type="text"
             placeholder="search friends"
             name="name"
-            value={this.state.name}
-            onChange={this.changeHandler}
+            value={this.props.value}
+            onChange={this.props.changeHandler}
           />
         </form>
       </div>

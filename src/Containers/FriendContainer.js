@@ -8,7 +8,8 @@ class FriendContainer extends React.Component {
   state = {
     friends: [],
     filtered: [],
-    bestFriends: []
+    bestFriends: [],
+    searchValue: ""
   };
 
   componentDidMount() {
@@ -41,13 +42,9 @@ class FriendContainer extends React.Component {
     }
   };
 
-  changeHandler = friendObj => {
-    let searched = this.state.friends.filter(friend => {
-      return friend.name.toLowerCase().startsWith(friendObj.name.toLowerCase());
-    });
-    console.log(searched);
+  changeHandler = e => {
     this.setState({
-      filtered: [...searched]
+      searchValue: e.target.value
     });
   };
 
@@ -84,14 +81,30 @@ class FriendContainer extends React.Component {
     }
   };
 
+  searchFilter = () => {
+    let filteredFriends = [...this.state.friends].filter(friend => {
+      return friend.name
+        .toLowerCase()
+        .startsWith(this.state.searchValue.toLowerCase());
+    });
+    return filteredFriends;
+  };
+
   render() {
     return (
       <div className="be-the-one">
-        <SearchForm changeHandler={this.changeHandler} />
+        <SearchForm
+          changeHandler={this.changeHandler}
+          value={this.state.searchValue}
+        />
         <CreateForm submitHandler={this.createSubmitHandler} />
         {this.state.filtered.length > 0 ? (
           <AllFriends
-            friends={this.state.filtered}
+            friends={
+              this.state.searchValue.length > 0
+                ? this.searchFilter()
+                : this.state.filtered
+            }
             clickHandler={this.addHandler}
             deleteHandler={this.deleteHandler}
           />
